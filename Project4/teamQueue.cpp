@@ -5,7 +5,7 @@
 ** It contains a pointer to the first QueueNode object as a member variable. It
 ** also contains five functions functions for teamQueue operations - check to see if
 ** teamQueue is empty, add value to back of teamQueue, get value at front, remove the value
-** at front, and print teamQueue.
+** at front, and print teamQueue. An additional function is added to insert value at front
 *******************************************************************************/
 #include "teamQueue.hpp"
 

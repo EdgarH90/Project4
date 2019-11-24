@@ -5,7 +5,7 @@
 ** It contains a pointer to the first QueueNode object as a member variable. It
 ** also contains five functions functions for queue operations - check to see if
 ** queue is empty, add value to back of queue, get value at front, remove the value
-** at front, and print queue.
+** at front, and print queue. An additional function is added to insert value at front
 *******************************************************************************/
 #include <string>
 #include <iostream>

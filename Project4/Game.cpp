@@ -1,15 +1,11 @@
+/*******************************************************************************
+** Author:       Edgar Hernandez
+** Date:         10/19/2019
+** Description:  This program contains the implementation for the Game class.
+** It contains integer variables for the round stats of each team and three teamQueue
+** objects as private members. It also contains the functions for tournament gameplay.
+*******************************************************************************/
 #include "Game.hpp"
-
-
-
-Game::Game()
-{
-}
-
-
-Game::~Game()
-{
-}
 
 /*********************************************************************
 *					Game::playeroneAttacks()

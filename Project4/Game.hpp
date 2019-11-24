@@ -1,8 +1,9 @@
 /*******************************************************************************
 ** Author:       Edgar Hernandez
 ** Date:         10/19/2019
-** Description:  This program contains the specification for the playGame class.
-** 
+** Description:  This program contains the specification for the Game class.
+** It contains integer variables for the round stats of each team and three teamQueue
+** objects as private members. It also contains the functions for tournament gameplay.
 *******************************************************************************/
 #ifndef PLAYGAME_HPP
 #define PLAYGAME_HPP
@@ -33,8 +34,8 @@ private:
 	std::shared_ptr<Character> player1;
 	std::shared_ptr<Character> player2;
 public:
-	Game();
-	~Game();
+	Game() {};
+	~Game() {};
 	void playeroneAttacks();
 	void playertwoAttacks();
 	void playGame();
