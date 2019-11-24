@@ -11,3 +11,25 @@
 
 //Pure virtual destructor
 Character::~Character() {}
+
+/*********************************************************************
+*					Character::setName()
+* This function sets the name of the character by taking in the user's
+* string input as a parameter.
+*********************************************************************/
+void Character::setName(std::string userName)
+{
+	name = userName;
+}
+
+/*********************************************************************
+*					Character::recoverStrength()
+* This function recovers the strength of a winning character by 20%.
+*********************************************************************/
+void Character::recoverStrength()
+{
+	if (strengthPoints < 12)
+	{
+		strengthPoints += (strengthPoints * .2);
+	}
+}

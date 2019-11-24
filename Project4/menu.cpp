@@ -64,8 +64,6 @@ void menu()
 					gameIn.teamSelect(userChoice, team, playerName);
 				}
 			}
-			//gameIn->getPlayerInfo();
-			//Play game
 			gameIn.playGame();
 		}
 

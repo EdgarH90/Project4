@@ -28,7 +28,8 @@ public:
 	virtual ~Character() = 0;
 	virtual int getArmor() { return armorPoints; };
 	virtual int getStrength() { return strengthPoints; };
-	virtual void setName(std::string userName) {};
+	virtual void setName(std::string userName);
+	virtual void recoverStrength();
 };
 
 #endif

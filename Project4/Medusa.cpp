@@ -93,10 +93,13 @@ int Medusa::getStrength()
 }
 
 /*********************************************************************
-*					Medusa::setName()
-* This function returns the name of the character.
+*					Medusa::recoverStrength()
+* This function recovers the strength of a winning character by 20%.
 *********************************************************************/
-void Medusa::setName(std::string userName)
+void Medusa::recoverStrength()
 {
-	name = userName;
+	if (strengthPoints < 8)
+	{
+		strengthPoints += (strengthPoints * .2);
+	}
 }

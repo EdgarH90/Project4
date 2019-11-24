@@ -105,10 +105,13 @@ int HarryPotter::getStrength()
 }
 
 /*********************************************************************
-*					HarryPotter::setName()
-* This function returns the name of the character.
+*					HarryPotter::recoverStrength()
+* This function recovers the strength of a winning character by 20%.
 *********************************************************************/
-void HarryPotter::setName(std::string userName)
+void HarryPotter::recoverStrength()
 {
-	name = userName;
+	if (strengthPoints < 20)
+	{
+		strengthPoints += (strengthPoints * .2);
+	}
 }

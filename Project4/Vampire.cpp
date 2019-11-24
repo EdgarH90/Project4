@@ -94,10 +94,13 @@ int Vampire::getStrength()
 }
 
 /*********************************************************************
-*					Vampire::setName()
-* This function returns the name of the character.
+*					Vampire::recoverStrength()
+* This function recovers the strength of a winning character by 20%.
 *********************************************************************/
-void Vampire::setName(std::string userName)
+void Vampire::recoverStrength()
 {
-	name = userName;
+	if (strengthPoints < 18)
+	{
+		strengthPoints += (strengthPoints * .2);
+	}
 }

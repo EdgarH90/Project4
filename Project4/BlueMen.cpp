@@ -141,12 +141,3 @@ int BlueMen::getStrength()
 {
 	return strengthPoints;
 }
-
-/*********************************************************************
-*					BlueMen::setName()
-* This function returns the name of the character.
-*********************************************************************/
-void BlueMen::setName(std::string userName)
-{
-	name = userName;
-}

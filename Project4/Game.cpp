@@ -92,8 +92,8 @@ void Game::playeroneAttacks()
 
 	//Display defender's stats
 	std::cout << player2->getName() << "'s (Team Two Defender) stats: " << std::endl;
-	std::cout << "Armor: " << player2->getArmor() << std::endl;
-	std::cout << "Strength: " << player2->getStrength() << std::endl;
+	std::cout << "Armor: " << player2->getArmor() << std::setw(15) <<
+		"Strength: " << player2->getStrength() << std::endl;
 
 	//Used to store the points for the player's attacks
 	int pOneAttack = player1->attack();
@@ -109,10 +109,10 @@ void Game::playeroneAttacks()
 	}
 	else
 	{
-		std::cout << "\n *********************** \n"
+		std::cout << "\n**************************** \n"
 			<< player2->getName() << " died. " <<
-			player1->getName() << " (Team One) wins! \n ";
-		std::cout << " *********************** \n";
+			player1->getName() << " (Team One) wins! \n";
+		std::cout << "**************************** \n";
 		roundWinner = 1;
 	}
 }
@@ -130,9 +130,9 @@ void Game::playertwoAttacks()
 		" attacks " << player1->getName() << " (Team One)!***\n" << std::endl;
 
 	//Display defender's stats
-	std::cout << player1->getName() << "'s (Team One Defender) stats: " << std::endl;
-	std::cout << "Armor: " << player1->getArmor() << std::endl;
-	std::cout << "Strength: " << player1->getStrength() << std::endl;
+	std::cout << player1->getName() << "'s (Team Two Defender) stats: " << std::endl;
+	std::cout << "Armor: " << player1->getArmor() << std::setw(15) <<
+		"Strength: " << player1->getStrength() << std::endl;
 
 	//Used to store the points for the player's attacks
 	int pTwoAttack = player2->attack();
@@ -148,10 +148,10 @@ void Game::playertwoAttacks()
 	}
 	else
 	{
-		std::cout << "\n *********************** \n" 
+		std::cout << "\n**************************** \n" 
 			<< player1->getName() << " died. " <<
-			player2->getName() << " (Team Two) wins! \n ";
-		std::cout << " *********************** \n";
+			player2->getName() << " (Team Two) wins! \n";
+		std::cout << "**************************** \n";
 		roundWinner = 2;
 	}
 }
@@ -181,6 +181,7 @@ void Game::playGame()
 		}
 		if (roundWinner == 1)
 		{
+			player1->recoverStrength();
 			teamOne.rotateBack(player1);
 			teamTwo.removeFront();
 			teamOne.removeFront();
@@ -188,13 +189,14 @@ void Game::playGame()
 		}
 		else
 		{
+			player2->recoverStrength();
 			teamTwo.rotateBack(player2);
 			teamOne.removeFront();
 			teamTwo.removeFront();
 			teamtwoScore += 5;
 		}
 	}
-	std::cout << "\n *********************** \n" <<
+	std::cout << "\n*********************** \n" <<
 		"The final score is: \n" << "Team One: "<<
 		teamoneScore << " Team Two: " << teamtwoScore << std::endl;
 	if (teamoneScore > teamtwoScore)
@@ -209,7 +211,7 @@ void Game::playGame()
 	{
 		std::cout << "The tournament resulted in a tie!!!" << std::endl;
 	}
-	std::cout << " *********************** \n";
+	std::cout << "*********************** \n";
 }
 
 /*********************************************************************

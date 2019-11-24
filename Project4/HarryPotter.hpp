@@ -24,7 +24,7 @@ public:
 	std::string getName();
 	int getArmor();
 	int getStrength();
-	void setName(std::string userName);
+	void recoverStrength();
 };
 
 #endif

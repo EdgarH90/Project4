@@ -86,12 +86,3 @@ int Barbarian::getStrength()
 {
 	return strengthPoints;
 }
-
-/*********************************************************************
-*					Barbarian::setName()
-* This function returns the name of the character.
-*********************************************************************/
-void Barbarian::setName(std::string userName)
-{
-	name = userName;
-}
