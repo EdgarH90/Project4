@@ -194,6 +194,22 @@ void Game::playGame()
 			teamtwoScore += 5;
 		}
 	}
+	std::cout << "\n *********************** \n" <<
+		"The final score is: \n" << "Team One: "<<
+		teamoneScore << " Team Two: " << teamtwoScore << std::endl;
+	if (teamoneScore > teamtwoScore)
+	{
+		std::cout << "Team One Wins!!!" << std::endl;
+	}
+	else if (teamoneScore < teamtwoScore)
+	{
+		std::cout << "Team Two Wins!!!" << std::endl;
+	}
+	else
+	{
+		std::cout << "The tournament resulted in a tie!!!" << std::endl;
+	}
+	std::cout << " *********************** \n";
 }
 
 /*********************************************************************

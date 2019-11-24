@@ -15,7 +15,7 @@
 #include "teamQueue.hpp"
 
 // The function takes in all user inputs and validates them
-void menu(Game* gameIn)
+void menu()
 {
 	std::string errorMsg = "Please enter a valid integer";
 	int status = 1;
@@ -32,6 +32,7 @@ void menu(Game* gameIn)
 
 	while (status != 2)
 	{
+		Game gameIn;
 		if (status == 1)
 		{
 			std::string charNames[5] = { "Harry Potter", "Vampire", "Blue Men", "Barbarian", "Medusa" };
@@ -60,12 +61,12 @@ void menu(Game* gameIn)
 					inputValidation(userChoice, errorMsg, 1, 5);
 					std::cout << "What is your character's name? " << std::endl;
 					std::getline(std::cin, playerName);
-					gameIn->teamSelect(userChoice, team, playerName);
+					gameIn.teamSelect(userChoice, team, playerName);
 				}
 			}
 			//gameIn->getPlayerInfo();
 			//Play game
-			gameIn->playGame();
+			gameIn.playGame();
 		}
 
 		std::cout << "Would you like to play again? " << std::endl;
@@ -73,6 +74,8 @@ void menu(Game* gameIn)
 		inputValidation(userChoice, errorMsg, 1, 2);
 		status = userChoice;
 	}
-	std::cout << "Game over. Thanks for playing!!" << std::endl;
+	std::cout << "\n *********************** \n" << 
+		"Game over. Thanks for playing!!" << std::endl;
+	std::cout << " *********************** \n";
 }
 

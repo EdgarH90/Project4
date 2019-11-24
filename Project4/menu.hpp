@@ -10,5 +10,5 @@
 #include <string>
 
 
-void menu(Game* gameIn);
+void menu();
 #endif

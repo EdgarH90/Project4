@@ -21,13 +21,8 @@ int main()
 	//Downcast as unsigned int to convert to 32-bit integer
 	srand((unsigned int)time(NULL));
 
-	//Game fantasyGame;
-	//menu(&fantasyGame);
+	menu();
 
-	Game fantasyTourney;
-	menu(&fantasyTourney);
-
-	fantasyTourney.getPlayerInfo();
 
 	return 0;
 }
