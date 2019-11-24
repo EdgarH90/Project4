@@ -38,6 +38,7 @@ public:
 	bool isEmpty();
 	void addBack(int &playerChoice, std::string userName);
 	void rotateBack(std::shared_ptr<Character> winningChar);
+	void addtoLoser(std::shared_ptr<Character> winningChar);
 	std::shared_ptr<Character> getFront();
 	QueueNode* getfrontNode();
 	void removeFront();

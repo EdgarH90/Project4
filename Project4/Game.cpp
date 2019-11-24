@@ -12,73 +12,6 @@ Game::~Game()
 }
 
 /*********************************************************************
-*					Game::selectChar()
-* This function has the user select the character to be created by taking
-* in the player number and the player's choice as integer parameters.
-*********************************************************************/
-
-void Game::selectChar(int playerNum, int playerChoice)
-{
-	//Create a new character based on the player selection
-
-	if (playerChoice == 1)
-	{
-		if (playerNum == 1)
-		{
-			player1 = std::make_shared<HarryPotter>();
-		}
-		else
-		{
-			player2 = std::make_shared<HarryPotter>();
-		}
-	}
-	else if (playerChoice == 2)
-	{
-		if (playerNum == 1)
-		{
-			player1 = std::make_shared<Vampire>();
-		}
-		else
-		{
-			player2 = std::make_shared<Vampire>();
-		}
-	}
-	else if (playerChoice == 3)
-	{
-		if (playerNum == 1)
-		{
-			player1 = std::make_shared<BlueMen>();
-		}
-		else
-		{
-			player2 = std::make_shared<BlueMen>();
-		}
-	}
-	else if (playerChoice == 4)
-	{
-		if (playerNum == 1)
-		{
-			player1 = std::make_shared<Barbarian>();
-		}
-		else
-		{
-			player2 = std::make_shared<Barbarian>();
-		}
-	}
-	else
-	{
-		if (playerNum == 1)
-		{
-			player1 = std::make_shared<Medusa>();
-		}
-		else
-		{
-			player2 = std::make_shared<Medusa>();
-		}
-	}
-}
-
-/*********************************************************************
 *					Game::playeroneAttacks()
 * This function implements the round when player one attacks first.
 * It uses the attack and defense functions from both characters to 
@@ -159,18 +92,23 @@ void Game::playertwoAttacks()
 /*********************************************************************
 *					Game::playGame()
 * This function implements the gameplay until one character dies.
+* It uses the attack functions in the game class to simulate the rounds
+* for the members at the front of the team queues.
 *********************************************************************/
 
 void Game::playGame()
 {
+	//Loop until one team has no fighters left
 	while (teamOne.getfrontNode() != nullptr && teamTwo.getfrontNode() != nullptr)
 	{
 		player1 = teamOne.getFront();
 		player2 = teamTwo.getFront();
 
+		//Display team scores
 		std::cout << "Current score: " << std::endl;
 		std::cout << std::setw(10) << "Team One: " << teamoneScore <<
 			" Team Two: " << teamtwoScore << std::endl;
+		//Loop until one character from the current round dies
 		while (player1->getStrength() > 0 && player2->getStrength() > 0)
 		{
 			playeroneAttacks();
@@ -181,18 +119,27 @@ void Game::playGame()
 		}
 		if (roundWinner == 1)
 		{
+			//Player one wins, recover character strength and move character to back
 			player1->recoverStrength();
 			teamOne.rotateBack(player1);
-			teamTwo.removeFront();
 			teamOne.removeFront();
+			
+			//Add loser to back of loser list and remove from team two
+			loserList.addtoLoser(player2);
+			teamTwo.removeFront();
+			//Update team score
 			teamoneScore += 5;
 		}
 		else
 		{
+			//Player one wins, recover character strength and move character to back
 			player2->recoverStrength();
 			teamTwo.rotateBack(player2);
-			teamOne.removeFront();
 			teamTwo.removeFront();
+
+			//Add loser to back of loser list and remove from team one
+			loserList.addtoLoser(player1);
+			teamOne.removeFront();
 			teamtwoScore += 5;
 		}
 	}
@@ -216,7 +163,8 @@ void Game::playGame()
 
 /*********************************************************************
 *					Game::teamSelect()
-* This function adds a character to the queue based on the team
+* This function adds a character to the queue based on the team. It takes
+* in the user's character choice, team number, and name choice as parameters.
 *********************************************************************/
 
 void Game::teamSelect(int playerChoice, int& teamNumber, std::string userName)
@@ -233,13 +181,11 @@ void Game::teamSelect(int playerChoice, int& teamNumber, std::string userName)
 
 
 /*********************************************************************
-*					Game::teamoneInfo()
+*					Game::getloserInfo()
 * This function returns the information for the attacker
 *********************************************************************/
 
-void Game::getPlayerInfo()
+void Game::getloserInfo()
 {
-	teamOne.printQueue();
-	std::cout << std::endl;
-	teamTwo.printQueue();
+	loserList.printQueue();
 }

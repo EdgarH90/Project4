@@ -162,22 +162,19 @@ void teamQueue::printQueue()
 	//If head is not null, print head value
 	if (nodePtr != nullptr)
 	{
-		std::cout << " \n Your team is: " << std::endl;
+		std::cout << " \n The losers are: " << std::endl;
 		std::cout << nodePtr->playerChar->getName() << "  ";
 
 		//Loop if there is more than one value in the teamQueue
 		while (nodePtr->next != head)
 		{
 			nodePtr = nodePtr->next;
-
-			//FIX BEFORE SUBMITTING!!!!!!!!!!!
-
 			std::cout << nodePtr->playerChar->getName() << "  ";
 		}
 	}
 	else
 	{
-		std::cout << "Your team is empty." << std::endl;
+		std::cout << "The loser list is empty." << std::endl;
 	}
 	std::cout << "\n" << std::endl;
 }
@@ -231,7 +228,7 @@ std::string teamQueue::getfrontInformation()
 * This function adds a new node at the back of the list. It takes in a
 * character from the user to be used as the value.
 *********************************************************************/
-void teamQueue::rotateBack(std::shared_ptr<Character> winningChar)
+void teamQueue::rotateBack(std::shared_ptr<Character> charIn)
 {
 	QueueNode* nodePtr = head;
 	if (isEmpty())
@@ -239,7 +236,7 @@ void teamQueue::rotateBack(std::shared_ptr<Character> winningChar)
 		//If list is empty, allocate a new node to the head and 
 		//have previous and next both point to head
 		head = new QueueNode();
-		head->playerChar= winningChar;
+		head->playerChar= charIn;
 		head->prev = head;
 		head->next = head;
 	}
@@ -250,7 +247,7 @@ void teamQueue::rotateBack(std::shared_ptr<Character> winningChar)
 			//This function adds a node when the only other node is the
 			//head.
 			nodePtr = new QueueNode();
-			nodePtr->playerChar = winningChar;
+			nodePtr->playerChar = charIn;
 			//Both the previous and next of new node point to head
 			nodePtr->next = head;
 			nodePtr->prev = head;
@@ -261,7 +258,7 @@ void teamQueue::rotateBack(std::shared_ptr<Character> winningChar)
 		else
 		{
 			nodePtr = new QueueNode();
-			nodePtr->playerChar = winningChar;;
+			nodePtr->playerChar = charIn;;
 			//Latest node to be added always has next point to head
 			nodePtr->next = head;
 			//Previous points to the current last node
@@ -285,34 +282,47 @@ QueueNode* teamQueue::getfrontNode()
 
 
 /*********************************************************************
-*					teamQueue::printQueue()
-* This function traverses the list beginning with the first value. It
-* first checks that the list is not empty.
+*					teamQueue::addtoLoser()
+* This function adds a new node at the top of the loser list. It takes in a
+* character from the user to be used as the value.
 *********************************************************************/
-//void teamQueue::printQueue()
-//{
-//	QueueNode* nodePtr = head;
-//
-//	//If head is not null, print head value
-//	if (nodePtr != nullptr)
-//	{
-//		std::cout << " \n Your team is: " << std::endl;
-//		std::cout << nodePtr->playerChar->getName() << "  ";
-//
-//		//Loop if there is more than one value in the teamQueue
-//		while (nodePtr->next != head)
-//		{
-//			nodePtr = nodePtr->next;
-//
-//			//FIX BEFORE SUBMITTING!!!!!!!!!!!
-//
-//			std::cout << nodePtr->playerChar->getName() << "  ";
-//		}
-//	}
-//	else
-//	{
-//		std::cout << "Your team is empty." << std::endl;
-//	}
-//	std::cout << "\n" << std::endl;
-//}
-
+void teamQueue::addtoLoser(std::shared_ptr<Character> charIn)
+{
+	QueueNode* nodePtr = head;
+	if (isEmpty())
+	{
+		//If list is empty, allocate a new node to the head and 
+		//have previous and next both point to head
+		head = new QueueNode();
+		head->playerChar = charIn;
+		head->prev = head;
+		head->next = head;
+	}
+	else
+	{
+		if (head->next == head)
+		{
+			//This function adds a node when the only other node is the
+			//head.
+			head = new QueueNode();
+			head->playerChar = charIn;
+			//Both the previous and next of new node point to head
+			nodePtr->next = head;
+			nodePtr->prev = head;
+			//Change head pointers to make sure the link is circular
+			head->prev = nodePtr;
+			head->next = nodePtr;
+		}
+		else
+		{
+			head = new QueueNode();
+			head->playerChar = charIn;;
+			//New head points to previous head
+			head->next = nodePtr;
+			//Previous head points to the current last node
+			head->prev = nodePtr->prev;
+			//Sets current last node to point to new head
+			nodePtr->prev->next = head;
+		}
+	}
+}

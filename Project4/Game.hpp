@@ -35,12 +35,11 @@ private:
 public:
 	Game();
 	~Game();
-	void selectChar(int playerNum, int playerChoice);
 	void playeroneAttacks();
 	void playertwoAttacks();
 	void playGame();
 	void teamSelect(int playerChoice, int& teamNumber, std::string userName);
-	void getPlayerInfo();
+	void getloserInfo();
 };
 
 #endif

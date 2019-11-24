@@ -38,8 +38,8 @@ void menu()
 			std::string charNames[5] = { "Harry Potter", "Vampire", "Blue Men", "Barbarian", "Medusa" };
 
 			//Select characters for both teams
-			std::cout << "Please select the number of characters per team (max of 3). " << std::endl;
-			inputValidation(numofChars, errorMsg, 1, 3);
+			std::cout << "Please select the number of characters per team (max of 6). " << std::endl;
+			inputValidation(numofChars, errorMsg, 1, 6);
 
 			//Display list of characters
 			std::cout << "Available characters: " << std::endl;
@@ -64,7 +64,16 @@ void menu()
 					gameIn.teamSelect(userChoice, team, playerName);
 				}
 			}
+			//Start the tournament
 			gameIn.playGame();
+
+			std::cout << "Would you like to print the loser list? " << std::endl;
+			std::cout << std::setw(10) << "1. Yes" << std::setw(10) << "2. No" << std::endl;
+			inputValidation(userChoice, errorMsg, 1, 2);
+			if (userChoice == 1)
+			{
+				gameIn.getloserInfo();
+			}
 		}
 
 		std::cout << "Would you like to play again? " << std::endl;
